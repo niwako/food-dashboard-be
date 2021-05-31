@@ -1,0 +1,36 @@
+<html itemscope itemtype="http://schema.org/Article">
+  <head>
+    <script
+      src="https://apis.google.com/js/client:platform.js?onload=start"
+      async
+      defer
+    ></script>
+
+    <script>
+      function start() {
+        gapi.load("auth2", function () {
+          auth2 = gapi.auth2.init({
+            client_id:
+              "626356177524-6dtp25nli2em4p1q4pt3rim5um2qlu4l.apps.googleusercontent.com",
+            // Scopes to request in addition to 'profile' and 'email'
+            //scope: 'additional_scope'
+            scope:
+              "https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive",
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <button id="signinButton">Sign in with Google</button>
+    <script>
+      document.querySelector("#signinButton").onclick = () => {
+        auth2.grantOfflineAccess().then(signInCallback);
+      };
+
+      function signInCallback(authResult) {
+        console.log(authResult);
+      }
+    </script>
+  </body>
+</html>

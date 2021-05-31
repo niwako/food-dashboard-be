@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
+from fastapi.staticfiles import StaticFiles
+
+from auth import router
 
 app = FastAPI()
-
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+api = APIRouter(prefix="/api")
+api.include_router(router)
+app.include_router(api)
