@@ -23,7 +23,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
-router = APIRouter(prefix="/auth")
+router = APIRouter()
 scheme = HTTPBearer()
 
 
